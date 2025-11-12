@@ -23,7 +23,12 @@ app.use(express.urlencoded({ extended: true }));
 const allowedOrigins = [
   "http://localhost:3000", // local dev
   "http://localhost:3001", // local dev alternative
-  process.env.FRONTEND_URL || "https://your-domain.com", // production URL
+  "https://localhost:3000", // local dev with SSL
+  "https://krashakinnovativesolution.com", // production domain
+  "http://krashakinnovativesolution.com", // production domain (http)
+  "https://www.krashakinnovativesolution.com", // production domain with www
+  "http://www.krashakinnovativesolution.com", // production domain with www (http)
+  process.env.FRONTEND_URL || "https://krashakinnovativesolution.com", // production URL from env
 ];
 
 app.use(

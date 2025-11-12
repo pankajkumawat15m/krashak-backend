@@ -9,4 +9,4 @@ RAZORPAY_KEY_SECRET=BycPfcOuZ0Nw6Hjcwfr87NsC
 SMTP_USER=8d753f001@smtp-brevo.com
 SMTP_PASS=O51IWaY7jSUFgByn
 SENDER_EMAIL=krashakinnovativesolutions@gmail.com
-FRONTEND_URL=http://localhost:3000
+FRONTEND_URL=https://krashakinnovativesolution.com
