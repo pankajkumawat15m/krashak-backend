@@ -86,6 +86,21 @@ app.get("/", (req, res) => {
   res.send("Hello From Server");
 });
 
+// Test endpoint without MongoDB
+app.post("/test-auth", (req, res) => {
+  const { email, password } = req.body;
+  res.json({
+    message: "Test endpoint working",
+    success: true,
+    received: { email: email, passwordLength: password?.length },
+    mongodb_connected: !!mongoose.connection.readyState,
+    env_check: {
+      mongodb_uri: !!process.env.MONGODB_URI,
+      jwt_secret: !!process.env.JWT_SECRET
+    }
+  });
+});
+
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, "0.0.0.0", () => {
