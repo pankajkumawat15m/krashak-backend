@@ -51,15 +51,25 @@ const DB_URL = process.env.MONGODB_URI;
 if (!DB_URL) {
   console.error('MONGODB_URI is not set in environment variables.');
 } else {
-  // Use recommended options and provide better logging for deployment
+  console.log('Attempting MongoDB connection to:', DB_URL.replace(/:[^:@]*@/, ':***@')); // Hide password in logs
+  
+  // Use recommended options with increased timeouts for Railway
   mongoose.set('strictQuery', false);
   mongoose
-    .connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(DB_URL, { 
+      useNewUrlParser: true, 
+      useUnifiedTopology: true,
+      connectTimeoutMS: 30000, // 30 seconds
+      socketTimeoutMS: 30000,  // 30 seconds
+      serverSelectionTimeoutMS: 30000, // 30 seconds
+      bufferMaxEntries: 0 // Disable mongoose buffering
+    })
     .then(() => {
-      console.log('Successfully connected to MongoDB');
+      console.log('✅ Successfully connected to MongoDB');
     })
     .catch((err) => {
-      console.error('Failed to connect to MongoDB:', err && err.message ? err.message : err);
+      console.error('❌ Failed to connect to MongoDB:', err && err.message ? err.message : err);
+      console.error('Full error details:', err);
       // Exit process so deployment platform (Railway) registers a failed start
       process.exit(1);
     });

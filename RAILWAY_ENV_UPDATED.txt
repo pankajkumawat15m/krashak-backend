@@ -1,0 +1,21 @@
+# Updated Railway Environment Variables - MongoDB Fix
+
+## Copy these EXACT values to Railway Dashboard → Variables:
+
+NODE_ENV=production
+MONGODB_URI=mongodb+srv://krashakinnovativesolutions:7KJmvIveScwXe21g@krashak-db.2ifvu2x.mongodb.net/krashak-users?retryWrites=true&w=majority&appName=Krashak-cluster&connectTimeoutMS=30000&socketTimeoutMS=30000
+JWT_SECRET=krashak17
+RAZORPAY_KEY_ID=rzp_test_Ps8nO71TIxGAt1
+RAZORPAY_KEY_SECRET=BycPfcOuZ0Nw6Hjcwfr87NsC
+SMTP_USER=8d753f001@smtp-brevo.com
+SMTP_PASS=O51IWaY7jSUFgByn
+SENDER_EMAIL=krashakinnovativesolutions@gmail.com
+FRONTEND_URL=https://krashakinnovativesolution.com
+
+## Key Changes:
+1. Added database name: /krashak-users
+2. Added timeout options: connectTimeoutMS=30000&socketTimeoutMS=30000
+3. Increased connection timeout to 30 seconds
+
+## IMPORTANT: Remove PORT variable if present!
+Railway automatically provides PORT variable.
