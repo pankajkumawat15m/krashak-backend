@@ -53,16 +53,30 @@ app.use("/payment", PaymentRouter);
 app.use("/register", RegisterRouter);
 
 // Connect to MongoDb
-
 const DB_URL = process.env.MONGODB_URI;
-mongoose.connect(DB_URL);
-const connect = mongoose.connection;
-connect.once("open", () => {
-  console.log("Successfully connected to database");
-});
-connect.on("error", () => {
-  console.log("Failed to connect to database");
-});
+
+if (!DB_URL) {
+  console.error('MONGODB_URI is not set in environment variables.');
+} else {
+  // Use recommended options and provide better logging for deployment
+  mongoose.set('strictQuery', false);
+  mongoose
+    .connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+      console.log('Successfully connected to MongoDB');
+    })
+    .catch((err) => {
+      console.error('Failed to connect to MongoDB:', err && err.message ? err.message : err);
+      // Exit process so deployment platform (Railway) registers a failed start
+      process.exit(1);
+    });
+  
+  // keep the existing connection listeners for extra runtime visibility
+  const connect = mongoose.connection;
+  connect.on('error', (err) => {
+    console.error('MongoDB connection error:', err && err.message ? err.message : err);
+  });
+}
 
 // for test the server
 app.get("/", (req, res) => {
