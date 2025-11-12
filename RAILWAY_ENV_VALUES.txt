@@ -1,0 +1,12 @@
+# Railway Environment Variables (Copy these exact values)
+
+NODE_ENV=production
+PORT=4000
+MONGODB_URI=mongodb+srv://krashakinnovativesolutions:7KJmvIveScwXe21g@krashak-db.2ifvu2x.mongodb.net/?retryWrites=true&w=majority&appName=Krashak-cluster
+JWT_SECRET=krashak17
+RAZORPAY_KEY_ID=rzp_test_Ps8nO71TIxGAt1
+RAZORPAY_KEY_SECRET=BycPfcOuZ0Nw6Hjcwfr87NsC
+SMTP_USER=8d753f001@smtp-brevo.com
+SMTP_PASS=O51IWaY7jSUFgByn
+SENDER_EMAIL=krashakinnovativesolutions@gmail.com
+FRONTEND_URL=http://localhost:3000

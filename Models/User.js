@@ -1,4 +1,3 @@
-const { default: def } = require("ajv/dist/vocabularies/discriminator");
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
