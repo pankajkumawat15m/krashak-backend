@@ -31,26 +31,13 @@ const allowedOrigins = [
   process.env.FRONTEND_URL || "https://krashakinnovativesolution.com", // production URL from env
 ];
 
+// Allow all origins for production (temporary fix for CORS issues)
 app.use(
   cors({
-    origin: function (origin, callback) {
-      console.log('CORS request from origin:', origin);
-      
-      // Allow requests with no origin (like mobile apps or Postman)
-      if (!origin) return callback(null, true);
-      
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        // For production debugging - log blocked origins
-        console.log('CORS blocked origin:', origin);
-        console.log('Allowed origins:', allowedOrigins);
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: true, // Allow all origins
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   })
 );
 
