@@ -70,8 +70,8 @@ if (!DB_URL) {
     .catch((err) => {
       console.error('❌ Failed to connect to MongoDB:', err && err.message ? err.message : err);
       console.error('Full error details:', err);
-      // Exit process so deployment platform (Railway) registers a failed start
-      process.exit(1);
+      // Don't exit process - let server start without DB for now
+      console.log('⚠️ Server starting without database connection');
     });
   
   // keep the existing connection listeners for extra runtime visibility
